@@ -1,7 +1,7 @@
 <?php
-include_once 'resources/session.php';
-include_once 'resources/utilities.php';
-include_once 'resources/Database.php';
+include_once 'resource/session.php';
+include_once 'resource/utilities.php';
+include_once 'resource/Database.php';
 
 if(isset($_POST["SigninBtn"])){
 
