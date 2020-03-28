@@ -15,6 +15,27 @@ if(isset($_POST['signinbtn'])){
         $statement = $db->prepare($sqlQuery);
         $statement->execute(array(':username' => $user));
 
+        while ($row = $statement->fetch()){
+            $id = $row['id'];
+            $hashedpass = $row['password'];
+            $username = $row['username'];
+
+            if (password_verify($pass, $hashedpass)){
+                $_SESSION['id'] = $id;
+                $_SESSION['username'] = $username;
+                header("location:index.php");
+            }else{
+                $result = "<p style='padding: 20px; color: red;'></p>";
+            }
+
+        }
+
+    }else{
+        if(count($form_errors) == 1){
+            $result = "<p style='color:red;'>there was 1 error in form</p>";
+        }else
+            $result = "<p style='color:red;'>there were ".count($form_errors)."error in form</p>";
+
     }
 
 
